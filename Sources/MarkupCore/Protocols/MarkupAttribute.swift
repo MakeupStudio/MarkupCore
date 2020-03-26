@@ -6,9 +6,15 @@
 //  Copyright © 2019 MakeupStudio. All rights reserved.
 //
 
-public protocol MarkupAttribute: Renderable, Hashable {
+public typealias _HashableMarkupAttribute = _MarkupAttribute & Hashable
+public typealias HashableMarkupAttribute = MarkupAttribute & Hashable
+
+public protocol _MarkupAttribute: Renderable {
     var key: String { get }
     var value: String { get }
+}
+
+public protocol MarkupAttribute: _MarkupAttribute {
     init(key: String, value: String)
 }
 
@@ -24,13 +30,19 @@ extension MarkupAttribute {
         self.init(key: key, value: value)
     }
     
+}
+
+extension _MarkupAttribute {
+    
+    public var erased: ErasedMarkupAttribute { .init(self) }
+    
     // MARK: Hashable
     
-    static func ==(lhs: Self, rhs: Self) -> Bool {
+    public static func ==(lhs: Self, rhs: Self) -> Bool {
         lhs.key == rhs.key
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(key)
     }
     

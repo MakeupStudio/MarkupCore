@@ -3,5 +3,6 @@ import XCTest
 import MarkupCoreTests
 
 var tests = [XCTestCaseEntry]()
-tests += MarkupCoreTests.allTests()
+tests += MarkupCoreTests.__allTests()
+
 XCTMain(tests)

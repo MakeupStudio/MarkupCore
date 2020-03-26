@@ -7,5 +7,9 @@
 //
 
 public protocol MarkupContext {
-    associatedtype _Attribute: MarkupAttribute
+    associatedtype _Attribute: _HashableMarkupAttribute
+}
+
+public protocol ChildMarkupContext: MarkupContext {
+    associatedtype RootContext: MarkupContext
 }

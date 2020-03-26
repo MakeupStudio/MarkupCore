@@ -8,12 +8,12 @@
 
 public protocol MarkupNodeWrapper {
     associatedtype Context: MarkupContext
-    var node: Node<Context> { get }
-    init(node: Node<Context>)
+    var node: Node { get }
+    init(node: Node)
 }
 
 extension MarkupNodeWrapper {
     
-    public init(_ node: Node<Context>) { self.init(node: node) }
+    public init(_ node: Node) { self.init(node: node) }
     
 }

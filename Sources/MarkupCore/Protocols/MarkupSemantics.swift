@@ -8,4 +8,4 @@
 
 public protocol MarkupSemantics {}
 
-public enum AnyMarkupSemantics: MarkupSemantics {}
+public enum NoMarkupSemantics: MarkupSemantics {}
