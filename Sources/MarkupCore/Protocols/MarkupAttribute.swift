@@ -7,7 +7,7 @@
 //
 
 public typealias _HashableMarkupAttribute = _MarkupAttribute & Hashable
-public typealias HashableMarkupAttribute = MarkupAttribute & Hashable
+public typealias HashableMarkupAttribute = MarkupAttribute & _HashableMarkupAttribute
 
 public protocol _MarkupAttribute: Renderable {
     var key: String { get }
