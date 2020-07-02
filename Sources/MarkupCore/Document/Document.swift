@@ -8,12 +8,12 @@
 
 public struct Document<Format: DocumentFormat> {
     
-    public typealias Content = Format.Content
+    public typealias Content = Format.DocumentContent
     public var content = [Content]()
     
 }
 
-extension Document: Renderable where Format.Content.Body: Renderable {
+extension Document: Renderable where Format.DocumentContent.Body: Renderable {
     
     public func render() -> String {
         content

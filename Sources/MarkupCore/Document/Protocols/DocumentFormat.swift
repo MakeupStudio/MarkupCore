@@ -7,5 +7,5 @@
 //
 
 public protocol DocumentFormat {
-    associatedtype Content: DocumentContent
+    associatedtype DocumentContent: MarkupCore.DocumentContent
 }
