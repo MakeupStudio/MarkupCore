@@ -12,7 +12,7 @@ public struct ErasedMarkupAttribute: _HashableMarkupAttribute {
     public let value: String
     private let rendered: String
     
-    init<Attribute: _MarkupAttribute>(_ attribute: Attribute) {
+    init<Attribute: AnyMarkupAttribute>(_ attribute: Attribute) {
         self.key = attribute.key
         self.value = attribute.value
         self.rendered = attribute.render()

@@ -32,6 +32,9 @@ extension Node {
     
     func render(_ node: Node, into output: inout String, indentedBy indentation: Indentation) {
         switch node {
+//        case let .future(node):
+//            render(node(), into: &output, indentedBy: indentation)
+            
         case let .raw(string):
             output.append(string.wrap.raw.by(indentation))
             
