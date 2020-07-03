@@ -24,10 +24,6 @@ extension Node: _NodeProvider, Markup {
     public var _node: Node { self }
 }
 
-extension NodeWrapper: _NodeProvider, Markup {
-    public var body: some Markup { node }
-}
-
 //internal protocol _ContextProtocol {}
 //
 //@propertyWrapper
