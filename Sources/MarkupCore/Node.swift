@@ -53,7 +53,7 @@ public indirect enum Node: ExpressibleByStringLiteral, ExpressibleByArrayLiteral
     public func wrap() -> NodeWrapper<Context, Semantics> { .init(self) }
     public func wrap<Context: MarkupContext, Semantics: MarkupSemantics>(
         into: Context.Type,
-        _ semantics: Semantics
+        _ semantics: Semantics.Type
     ) -> NodeWrapper<Context, Semantics> { .init(self) }
     
 }
