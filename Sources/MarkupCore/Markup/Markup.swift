@@ -6,22 +6,19 @@
 //  Copyright © 2020 MakeupStudio. All rights reserved.
 //
 
-public protocol _NodeProvider {
-    var _node: Node { get }
-}
-
-public protocol Markup: _NodeProvider, CustomRenderable {
+public protocol Markup: NodeProvider, CustomRenderable {
     associatedtype Body: Markup
     var body: Body { get }
 }
+
 extension Markup {
-    public var _node: Node { body._node }
-    public func render(indentedBy indentation: Indentation) -> String { _node.render(indentedBy: indentation) }
+    public var node: Node { body.node }
+    public func render(indentedBy indentation: Indentation) -> String { node.render(indentedBy: indentation) }
 }
 
-extension Node: _NodeProvider, Markup {
+extension Node: NodeProvider, Markup {
     public var body: some Markup { self }
-    public var _node: Node { self }
+    public var node: Node { self }
 }
 
 //internal protocol _ContextProtocol {}

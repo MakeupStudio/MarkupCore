@@ -8,7 +8,7 @@ final class MarkupCoreOrderedSetTests: XCTestCase {
     func assert(
         _ values: OrderedSet<Int>,
         _ expectations: [Int],
-        file: StaticString = #file,
+        file: StaticString = #filePath,
         line: UInt = #line
     ) {
         if values != expectations {

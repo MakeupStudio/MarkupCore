@@ -7,6 +7,6 @@
 
 import Foundation
 
-public enum ErasedMarkupContext: MarkupContext {
+public enum NoMarkupContext: MarkupContext {
     public typealias _Attribute = AnyMarkupAttribute
 }

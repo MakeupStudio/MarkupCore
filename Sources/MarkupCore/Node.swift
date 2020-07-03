@@ -8,14 +8,17 @@
 
 public indirect enum Node: ExpressibleByStringLiteral, ExpressibleByArrayLiteral {
     public typealias Attributes = OrderedSet<AnyMarkupAttribute>
+    public typealias Context = NoMarkupContext
+    public typealias Semantics = NoMarkupSemantics
+    
     case raw(String)
     case text(String)
     case comment(String)
     case group([Node] = [])
     case element(String, Attributes = [], Node = .empty, isSelfClosing: Bool = false)
-//    case future(() -> Node)
     case empty
     
+//    case future(() -> Node)
 //    static public func future<U>(_ args: U, closure: @escaping (U) -> Node) -> Node { .future({ closure(args) }) }
 //    static public func future(_ node: @escaping @autoclosure () -> Node) -> Node { .future((), closure: node) }
     
@@ -47,4 +50,14 @@ public indirect enum Node: ExpressibleByStringLiteral, ExpressibleByArrayLiteral
 //        }
 //    }
     
+    func wrap() -> NodeWrapper<Context, Semantics> { .init(self) }
+    func wrap<Context: MarkupContext, Semantics: MarkupSemantics>(
+        ctx: Context.Type,
+        _ semantics: Semantics
+    ) -> NodeWrapper<Context, Semantics> { .init(self) }
+    
+}
+
+extension Node: MarkupNodeWrapper {
+    public init(node: Node) { self = node }
 }

@@ -6,10 +6,15 @@
 //  Copyright © 2019 MakeupStudio. All rights reserved.
 //
 
-public protocol AnyMarkupNodeWrapper: Markup {
+public protocol NodeProvider {
     var node: Node { get }
+}
+
+public protocol NodeInitializable {
     init(node: Node)
 }
+
+public protocol AnyMarkupNodeWrapper: Markup, NodeInitializable {}
 
 extension AnyMarkupNodeWrapper {
     public init(_ node: Node) { self.init(node: node) }
