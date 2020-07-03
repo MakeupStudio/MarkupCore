@@ -56,6 +56,9 @@ public indirect enum Node: ExpressibleByStringLiteral, ExpressibleByArrayLiteral
         _ semantics: Semantics.Type
     ) -> NodeWrapper<Context, Semantics> { .init(self) }
     
+    public func wrap<Context: MarkupContext, Semantics: MarkupSemantics>() -> NodeWrapper<Context, Semantics>
+    { .init(self) }
+    
 }
 
 extension Node: MarkupNodeWrapper {
