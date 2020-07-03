@@ -15,8 +15,8 @@ extension Sequence where Iterator.Element: Hashable {
 public struct OrderedSet<Element: Hashable>: BidirectionalCollection, Equatable, ExpressibleByArrayLiteral {
     
     public typealias Index = Int
-    private var set: Set<Element> = []
-    private var storage: [Element] = []
+    fileprivate var set: Set<Element> = []
+    fileprivate var storage: [Element] = []
     
     public static func ==<T: BidirectionalCollection>(lhs: Self, rhs: T)
     -> Bool where T.Element == Element, T.Index == Index {
@@ -122,4 +122,11 @@ public struct OrderedSet<Element: Hashable>: BidirectionalCollection, Equatable,
         return output
     }
     
+}
+
+
+extension OrderedSet: ErasableType where Element: ErasableType, Element.Erased: Hashable {
+    public var erased: OrderedSet<Element.Erased> {
+        .init(storage.map(\.erased))
+    }
 }
