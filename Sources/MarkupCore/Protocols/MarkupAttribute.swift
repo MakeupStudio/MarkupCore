@@ -9,7 +9,7 @@
 public typealias _HashableMarkupAttribute = AnyMarkupAttributeProtocol & Hashable
 public typealias HashableMarkupAttribute = MarkupAttribute & _HashableMarkupAttribute
 
-public protocol AnyMarkupAttributeProtocol: Renderable {
+public protocol AnyMarkupAttributeProtocol: ErasableType, Renderable {
     var key: String { get }
     var value: String { get }
 }
