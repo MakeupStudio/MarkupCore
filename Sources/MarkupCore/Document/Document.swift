@@ -11,6 +11,10 @@ public struct Document<Format: DocumentFormat> {
     public typealias Content = Format.DocumentContent
     public var content = [Content]()
     
+    public init(content: [Content]) {
+        self.content = content
+    }
+    
 }
 
 extension Document: Renderable where Format.DocumentContent.Body: Renderable {
