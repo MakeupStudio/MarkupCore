@@ -53,7 +53,7 @@ public struct AnyMarkupAttribute: _HashableMarkupAttribute {
     public let value: String
     private let rendered: String
     
-    init<Attribute: AnyMarkupAttributeProtocol>(_ attribute: Attribute) {
+    public init<Attribute: AnyMarkupAttributeProtocol>(_ attribute: Attribute) {
         self.key = attribute.key
         self.value = attribute.value
         self.rendered = attribute.render()
