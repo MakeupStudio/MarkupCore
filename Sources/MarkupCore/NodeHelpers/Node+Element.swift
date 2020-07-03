@@ -36,7 +36,7 @@ extension Node {
             .init(tag: tag, attributes: attributes, content: content, isSelfClosing: isSelfClosing)
         }
         
-        public func updatingAttributes(using attribute: ErasedMarkupAttribute) -> Self {
+        public func updatingAttributes(using attribute: AnyMarkupAttribute) -> Self {
             with(attributes: self.attributes.appending(attribute, forced: true))
         }
         

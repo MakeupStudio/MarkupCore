@@ -7,7 +7,7 @@
 //
 
 public indirect enum Node: ExpressibleByStringLiteral, ExpressibleByArrayLiteral {
-    public typealias Attributes = OrderedSet<ErasedMarkupAttribute>
+    public typealias Attributes = OrderedSet<AnyMarkupAttribute>
     case raw(String)
     case text(String)
     case comment(String)

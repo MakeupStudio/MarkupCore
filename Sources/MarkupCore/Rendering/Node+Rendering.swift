@@ -67,7 +67,7 @@ extension Node {
         nodes.forEach { render($0, into: &output, indentedBy: indentation) }
     }
     
-    func render<Attributes: Collection>(_ attributes: Attributes) -> String where Attributes.Element == ErasedMarkupAttribute {
+    func render<Attributes: Collection>(_ attributes: Attributes) -> String where Attributes.Element == AnyMarkupAttribute {
         attributes.isEmpty ? "" :
             "\(attributes.reduce(into: " ", { $0 += $1.escaping.rawValue + " " }).dropLast(1))"
     }
@@ -76,7 +76,7 @@ extension Node {
 
 // MARK: - Helpers
 
-fileprivate extension ErasedMarkupAttribute {
+fileprivate extension AnyMarkupAttribute {
     
     var escaping: String._IndentationWrap {
         let value = self.value.replacingOccurrences(of: "\"", with: "&quot;")

@@ -6,15 +6,15 @@
 //  Copyright © 2019 MakeupStudio. All rights reserved.
 //
 
-public typealias _HashableMarkupAttribute = AnyMarkupAttribute & Hashable
+public typealias _HashableMarkupAttribute = AnyMarkupAttributeProtocol & Hashable
 public typealias HashableMarkupAttribute = MarkupAttribute & _HashableMarkupAttribute
 
-public protocol AnyMarkupAttribute: Renderable {
+public protocol AnyMarkupAttributeProtocol: Renderable {
     var key: String { get }
     var value: String { get }
 }
 
-public protocol MarkupAttribute: AnyMarkupAttribute {
+public protocol MarkupAttribute: AnyMarkupAttributeProtocol {
     init(key: String, value: String)
 }
 
@@ -32,9 +32,9 @@ extension MarkupAttribute {
     
 }
 
-extension AnyMarkupAttribute {
+extension AnyMarkupAttributeProtocol {
     
-    public var erased: ErasedMarkupAttribute { .init(self) }
+    public var erased: AnyMarkupAttribute { .init(self) }
     
     // MARK: Hashable
     
@@ -46,4 +46,18 @@ extension AnyMarkupAttribute {
         hasher.combine(key)
     }
     
+}
+
+public struct AnyMarkupAttribute: _HashableMarkupAttribute {
+    public let key: String
+    public let value: String
+    private let rendered: String
+    
+    init<Attribute: AnyMarkupAttributeProtocol>(_ attribute: Attribute) {
+        self.key = attribute.key
+        self.value = attribute.value
+        self.rendered = attribute.render()
+    }
+    
+    public func render() -> String { rendered }
 }
