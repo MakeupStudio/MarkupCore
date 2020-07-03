@@ -50,9 +50,9 @@ public indirect enum Node: ExpressibleByStringLiteral, ExpressibleByArrayLiteral
 //        }
 //    }
     
-    func wrap() -> NodeWrapper<Context, Semantics> { .init(self) }
-    func wrap<Context: MarkupContext, Semantics: MarkupSemantics>(
-        ctx: Context.Type,
+    public func wrap() -> NodeWrapper<Context, Semantics> { .init(self) }
+    public func wrap<Context: MarkupContext, Semantics: MarkupSemantics>(
+        into: Context.Type,
         _ semantics: Semantics
     ) -> NodeWrapper<Context, Semantics> { .init(self) }
     
