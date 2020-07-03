@@ -7,7 +7,7 @@
 //
 
 @_functionBuilder
-public struct NodeBuilder<Context: MarkupContext, Semantics: MarkupSemantics> {
+public struct NodeBuilder<Context: MarkupContext> {
     public static func buildBlock<Content: MarkupNodeWrapper>(_ children: Content...)
         -> Content where Content.Context == Context {
             children.count == 1 ? children[0] : .init(.group(children.map { $0.node }))
