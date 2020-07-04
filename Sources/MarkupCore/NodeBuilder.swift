@@ -8,8 +8,10 @@
 
 @_functionBuilder
 public enum NodeBuilder {
-    public static func buildBlock(_ parts: NodeProvider...) -> NodeProvider { Node.group(parts.map(\.node)) }
-    public static func buildDo(_ parts: NodeProvider...) -> NodeProvider { Node.group(parts.map(\.node)) }
+    public static func buildBlock(_ parts: NodeProvider...) -> NodeProvider { buildBlock(parts) }
+    public static func buildBlock(_ parts: [NodeProvider]) -> NodeProvider { Node.group(parts.map(\.node)) }
+    public static func buildDo(_ parts: NodeProvider...) -> NodeProvider { buildDo(parts) }
+    public static func buildDo(_ parts: [NodeProvider]) -> NodeProvider { Node.group(parts.map(\.node)) }
     public static func buildIf(_ part: NodeProvider) -> NodeProvider { part.node }
     public static func buildEither(first: NodeProvider) -> NodeProvider { first.node }
     public static func buildEither(second: NodeProvider) -> NodeProvider { second.node }
