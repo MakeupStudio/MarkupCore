@@ -14,7 +14,9 @@ public protocol NodeInitializable {
     init(node: Node)
 }
 
-public protocol AnyMarkupNodeWrapper: Markup, NodeInitializable {}
+public protocol AnyNodeWrapper: NodeProvider, NodeInitializable {}
+
+public protocol AnyMarkupNodeWrapper: Markup, AnyNodeWrapper {}
 
 extension AnyMarkupNodeWrapper {
     public init(_ node: Node) { self.init(node: node) }
