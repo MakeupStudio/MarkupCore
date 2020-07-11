@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
@@ -14,11 +14,12 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .target(
-            name: "MarkupCore",
-            dependencies: []),
+        .target(name: "MarkupCore"),
         .testTarget(
             name: "MarkupCoreTests",
-            dependencies: ["MarkupCore"]),
+            dependencies: [
+                .target(name: "MarkupCore")
+            ]
+        ),
     ]
 )
